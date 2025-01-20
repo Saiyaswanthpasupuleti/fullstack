@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".", // Required to resolve non-relative imports
+      "paths": {
+        "@/*": ["src/*"] // Alias @/ maps to the src folder
+      }
+    }
+  }
+  

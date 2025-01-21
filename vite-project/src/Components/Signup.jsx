@@ -49,8 +49,10 @@ export default function Signup() {
         },
       });
       console.log("Signup successful:", response.data);
+      alert("Succes")
     } catch (error) {
       console.error("Signup error:", error.response?.data || error.message);
+      alert("failed")
     }
   };
 

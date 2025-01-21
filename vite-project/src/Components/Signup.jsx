@@ -24,7 +24,7 @@ export default function Signup() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3500/api/login", loginData);
+      const response = await axios.post("https://fullstack-1-rg85.onrender.com/api/login", loginData);
       console.log("Login successful:", response.data);
     } catch (error) {
       console.error("Login error:", error.response?.data || error.message);

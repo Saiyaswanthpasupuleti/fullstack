@@ -24,10 +24,10 @@ export default function Signup() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/login", loginData);
+      const response = await axios.post("http://localhost:3500/api/login", loginData);
       console.log("Login successful:", response.data);
     } catch (error) {
-      console.error("Login error:", error.response.data);
+      console.error("Login error:", error.response?.data || error.message);
     }
   };
 
@@ -43,24 +43,15 @@ export default function Signup() {
     }
 
     try {
-        // Assuming `formData` is already a FormData instance
-        const response = await fetch("https://fullstack-3-a495.onrender.com/api/signup", {
-          method: "POST",
-          body: formData, // FormData object is passed directly as the body
-        });
-      
-        // Check if the response is successful
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(`Signup error: ${JSON.stringify(errorData)}`);
-        }
-      
-        const responseData = await response.json();
-        console.log("Signup successful:", responseData);
-      } catch (error) {
-        console.error("Signup error:", error.message);
-      }
-      
+      const response = await axios.post("http://localhost:3500/api/signup", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log("Signup successful:", response.data);
+    } catch (error) {
+      console.error("Signup error:", error.response?.data || error.message);
+    }
   };
 
   return (
@@ -126,25 +117,24 @@ export default function Signup() {
               />
             </div>
             <RadioGroup>
-  <Label className="mt-1">User type</Label>
-  <div className="flex items-center space-x-2">
-    <RadioGroupItem
-      value="user"
-      id="user"
-      onClick={() => setSignupData({ ...signupData, userType: "user" })}
-    />
-    <Label htmlFor="user">User</Label>
-  </div>
-  <div className="flex items-center space-x-2">
-    <RadioGroupItem
-      value="admin"
-      id="admin"
-      onClick={() => setSignupData({ ...signupData, userType: "admin" })}
-    />
-    <Label htmlFor="admin">Admin</Label>
-  </div>
-</RadioGroup>
-
+              <Label className="mt-1">User Type</Label>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem
+                  value="user"
+                  id="user"
+                  onClick={() => setSignupData({ ...signupData, userType: "user" })}
+                />
+                <Label htmlFor="user">User</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem
+                  value="admin"
+                  id="admin"
+                  onClick={() => setSignupData({ ...signupData, userType: "admin" })}
+                />
+                <Label htmlFor="admin">Admin</Label>
+              </div>
+            </RadioGroup>
 
             <div>
               <Label htmlFor="photo">Upload Photo</Label>

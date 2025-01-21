@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const cors = require("cors");
 const mongoose = require("mongoose");
-
+require("dotenv").config()
 // Initialize app and port
 const app = express();
 const port = 3500;
@@ -16,10 +16,7 @@ app.use(cors());
 // MongoDB Connection
 mongoose
   .connect(
-    "mongodb+srv://saiyaswanths959:1P8oF8tdU7UdbHXF@cluster0.wq3w4.mongodb.net/signup",{
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
+    process.env.DATABASE
   )
   .then(() => {
     console.log("Database connected succesfull");

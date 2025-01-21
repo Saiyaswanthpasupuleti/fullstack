@@ -26,8 +26,12 @@ export default function Signup() {
     try {
       const response = await axios.post("https://fullstack-1-rg85.onrender.com/api/login", loginData);
       console.log("Login successful:", response.data);
+      alert("Login successful");
+      // Reset the login form
+      setLoginData({ email: "", password: "" });
     } catch (error) {
       console.error("Login error:", error.response?.data || error.message);
+      alert("Login failed");
     }
   };
 
@@ -43,16 +47,24 @@ export default function Signup() {
     }
 
     try {
-      const response = await axios.post("http://localhost:3500/api/signup", formData, {
+      const response = await axios.post("https://fullstack-1-rg85.onrender.com/api/signup", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
       console.log("Signup successful:", response.data);
-      alert("Succes")
+      alert("Signup successful");
+      // Reset the signup form
+      setSignupData({
+        name: "",
+        email: "",
+        password: "",
+        userType: "user",
+        photo: null,
+      });
     } catch (error) {
       console.error("Signup error:", error.response?.data || error.message);
-      alert("failed")
+      alert("Signup failed");
     }
   };
 

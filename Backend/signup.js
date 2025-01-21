@@ -16,7 +16,10 @@ app.use(cors());
 // MongoDB Connection
 mongoose
   .connect(
-    "mongodb+srv://saiyaswanths959:1P8oF8tdU7UdbHXF@cluster0.wq3w4.mongodb.net/signup"
+    "mongodb+srv://saiyaswanths959:1P8oF8tdU7UdbHXF@cluster0.wq3w4.mongodb.net/signup",{
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
   )
   .then(() => {
     console.log("Database connected succesfull");

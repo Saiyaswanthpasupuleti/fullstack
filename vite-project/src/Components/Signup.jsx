@@ -43,8 +43,8 @@ export default function Signup() {
     }
 
     try {
-      const response = await axios.post("http://localhost:3500/api/signup", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+      const response = await axios.post("https://fullstack-3-a495.onrender.com/api/signup", formData, {
+        headers: { "Content-Type": "multipart/form-data"},
       });
       console.log("Signup successful:", response.data);
     } catch (error) {
